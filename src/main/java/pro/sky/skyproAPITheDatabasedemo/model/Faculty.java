@@ -1,9 +1,6 @@
 package pro.sky.skyproAPITheDatabasedemo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 
 @Entity
@@ -11,20 +8,20 @@ import jakarta.persistence.Table;
 public class Faculty {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
-    private String color;
-
+    private String colour;
 
     public Faculty() {
+
     }
 
-    public Faculty(Long id, String name, String color) {
+    public Faculty(Long id, String name, String colour) {
         this.id = id;
         this.name = name;
-        this.color = color;
+        this.colour = colour;
     }
 
     public Long getId() {
@@ -43,12 +40,12 @@ public class Faculty {
         this.name = name;
     }
 
-    public String getColor() {
-        return color;
+    public String getColour() {
+        return colour;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setColour(String colour) {
+        this.colour = colour;
     }
 
     @Override
@@ -56,7 +53,7 @@ public class Faculty {
         return "Faculty{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", color='" + color + '\'' +
+                ", colour='" + colour + '\'' +
                 '}';
     }
 
@@ -65,14 +62,14 @@ public class Faculty {
         if (o == null || getClass() != o.getClass()) return false;
 
         Faculty faculty = (Faculty) o;
-        return id.equals(faculty.id) && name.equals(faculty.name) && color.equals(faculty.color);
+        return id.equals(faculty.id) && name.equals(faculty.name) && colour.equals(faculty.colour);
     }
 
     @Override
     public int hashCode() {
         int result = id.hashCode();
         result = 31 * result + name.hashCode();
-        result = 31 * result + color.hashCode();
+        result = 31 * result + colour.hashCode();
         return result;
     }
 }

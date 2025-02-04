@@ -1,25 +1,24 @@
 package pro.sky.skyproAPITheDatabasedemo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 
 @Entity
 @Table(name = "student")
 public class Student {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
-    private int age;
+    private Integer age;
 
     public Student() {
+
     }
 
-    public Student(Long id, String name, int age) {
+    public Student(Long id, String name, Integer age) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -41,11 +40,11 @@ public class Student {
         this.name = name;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -63,14 +62,14 @@ public class Student {
         if (o == null || getClass() != o.getClass()) return false;
 
         Student student = (Student) o;
-        return age == student.age && id.equals(student.id) && name.equals(student.name);
+        return id.equals(student.id) && name.equals(student.name) && age.equals(student.age);
     }
 
     @Override
     public int hashCode() {
         int result = id.hashCode();
         result = 31 * result + name.hashCode();
-        result = 31 * result + age;
+        result = 31 * result + age.hashCode();
         return result;
     }
 }
